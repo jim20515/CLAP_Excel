@@ -13,13 +13,13 @@ namespace NCCUExcel
 {
     public class ExcelCall
     {
-        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\";
+        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\1226\\";
 
         public static string _FileFolder = _TopFolder;
 
-        public static void exportCall(string fileInputName, string fileOutputName)
+        public static void exportCall(string dataName, string fileInputName, string fileOutputName)
         {
-            List<DataStruct> datas = GetExcel(_FileFolder + fileInputName);
+            List<DataStruct> datas = GetExcel(_FileFolder + dataName);
             List<DeviceRecordStruct> allDeviceTimes = new List<DeviceRecordStruct>();
 
             for (int i = 0; i < datas.Count; i++)
@@ -45,11 +45,11 @@ namespace NCCUExcel
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(_FileFolder + fileOutputName))
             {
-                file.Write("\t");
+                file.Write(" ,");
 
                 for (int i = 0; i < allDeviceTimes.Count; i++)
                 {
-                    string ID = allDeviceTimes[i].Id + "\t";
+                    string ID = allDeviceTimes[i].Id + ",";
                     file.Write(ID);
                 }
 
@@ -61,8 +61,31 @@ namespace NCCUExcel
 
                     for (int j = 0; j < allDeviceTimes.Count(); j++)
                     {
-                        show += "\t" + " 撥出:" + allDeviceTimes[j].AllOutTimes[i].ToString() + "秒" + 
-                            " ,撥入" + allDeviceTimes[j].AllInTimes[i].ToString() + "秒";
+                        show += "," + allDeviceTimes[j].AllOutTimes[i].ToString();
+                    }
+
+                    file.WriteLine(show);
+                }
+            }
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(_FileFolder + fileInputName))
+            {
+                file.Write(" ,");
+
+                for (int i = 0; i < allDeviceTimes.Count; i++)
+                {
+                    string ID = allDeviceTimes[i].Id + ",";
+                    file.Write(ID);
+                }
+
+                file.WriteLine();
+
+                for (int i = 0; i < 24; i++)
+                {
+                    string show = i.ToString();
+
+                    for (int j = 0; j < allDeviceTimes.Count(); j++)
+                    {
+                        show += "," + allDeviceTimes[j].AllInTimes[i].ToString();
                     }
 
                     file.WriteLine(show);
@@ -85,10 +108,10 @@ namespace NCCUExcel
                     string[] row = formatRecord.Split('\t');
                     DataStruct one = new DataStruct()
                     {
-                        Id = Convert.ToInt16(row[0]),
+                        Id = Convert.ToInt32(row[0]),
                         isOut = "撥出".Equals(row[1]),
-                        Value = Convert.ToInt16(row[2]),
-                        date = Convert.ToDateTime(row[3])
+                        Value = Convert.ToInt32(row[3]),
+                        date = Convert.ToDateTime(row[4])
                     };
 
                     list.Add(one);

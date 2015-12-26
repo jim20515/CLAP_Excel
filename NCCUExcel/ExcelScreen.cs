@@ -13,7 +13,7 @@ namespace NCCUExcel
 {
     public class ExcelScreen
     {
-        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\";
+        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\1226\\";
 
         public static string _ScreenFileFolder = _TopFolder;
 
@@ -42,11 +42,11 @@ namespace NCCUExcel
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(_ScreenFileFolder + fileOutputName))
             {
-                file.Write("\t");
+                file.Write(",");
 
                 for (int i = 0; i < allDeviceTimes.Count; i++)
                 {
-                    string ID = allDeviceTimes[i].Id + "\t";
+                    string ID = allDeviceTimes[i].Id + ",";
                     file.Write(ID);
                 }
 
@@ -58,7 +58,7 @@ namespace NCCUExcel
 
                     for (int j = 0; j < allDeviceTimes.Count(); j++)
                     {
-                        show += "\t" + (allDeviceTimes[j].AllTimes[i] / 60);
+                        show += "," + (allDeviceTimes[j].AllTimes[i] / 60);
                     }
 
                     file.WriteLine(show);

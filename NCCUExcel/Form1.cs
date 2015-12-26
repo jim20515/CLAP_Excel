@@ -16,9 +16,9 @@ namespace NCCUExcel
         {
             InitializeComponent();
 
-            ExcelScreen.exportScreen("screen.csv", "screen.txt");
-            ExcelCall.exportCall("call.csv", "call.txt");
-            ExcelApp.exportApp("app.csv", "app.txt");
+            ExcelScreen.exportScreen("screen.csv", "screenOut.csv");
+            ExcelCall.exportCall("call.csv", "callIn.csv", "callOut.csv");
+            ExcelApp.exportApp("app.csv", "appOut.csv");
 
             //for (int i = 0; i < _CallFileList.Count(); i++)
             //{

@@ -13,7 +13,7 @@ namespace NCCUExcel
 {
     public class ExcelApp
     {
-        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\";
+        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\1226\\";
 
         public static string _FileFolder = _TopFolder;
         public static string[] _RecordString = new string[] { "facebook", "line", "youtube", "gmail", "chrome", "googlemap"};
@@ -46,11 +46,11 @@ namespace NCCUExcel
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(_FileFolder + fileOutputName))
             {
-                file.Write("\t");
+                file.Write(",");
 
                 for (int i = 0; i < allDeviceTimes.Count; i++)
                 {
-                    string ID = allDeviceTimes[i].Id + "\t";
+                    string ID = allDeviceTimes[i].Id + ",";
                     file.Write(ID);
                 }
 
@@ -62,7 +62,7 @@ namespace NCCUExcel
 
                     for (int j = 0; j < allDeviceTimes.Count(); j++)
                     {
-                        show += "\t" + allDeviceTimes[j].AllTimes[i].ToString();
+                        show += "," + allDeviceTimes[j].AllTimes[i].ToString();
                     }
 
                     file.WriteLine(show);
@@ -82,12 +82,12 @@ namespace NCCUExcel
 
                 foreach (var record in records)
                 {
-                    string[] row = record.Split('\t');
+                    string[] row = record.Split(',');
                     DataStruct one = new DataStruct()
                     {
                         Id = Convert.ToInt16(row[0]),
                         Value = row[1].ToString(),
-                        date = Convert.ToDateTime(row[2])
+                        date = Convert.ToDateTime(row[2].Replace("\r", ":00"))
                     };
 
                     list.Add(one);
