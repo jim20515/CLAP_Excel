@@ -37,7 +37,8 @@ namespace NCCUExcel
 
                         DeviceRecordStruct findDeviceRecord = allDeviceTimes.Find(ById(datas[i].Id));
 
-                        findDeviceRecord.AllTimes[j]++;
+                        //a record is 3 second
+                        findDeviceRecord.AllTimes[j]+= 3;
                         break;
                     }
                 }
@@ -62,7 +63,7 @@ namespace NCCUExcel
 
                     for (int j = 0; j < allDeviceTimes.Count(); j++)
                     {
-                        show += "," + allDeviceTimes[j].AllTimes[i].ToString();
+                        show += "," + (Convert.ToDouble(allDeviceTimes[j].AllTimes[i]) / 60).ToString();
                     }
 
                     file.WriteLine(show);

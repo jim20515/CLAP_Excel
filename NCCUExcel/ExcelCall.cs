@@ -34,11 +34,11 @@ namespace NCCUExcel
 
                 if (datas[i].isOut)
                 {
-                    findDeviceRecord.AllOutTimes[datas[i].date.Hour] += datas[i].Value;
+                    findDeviceRecord.AllOutTimes[datas[i].date.Hour] += 1;
                 }
                 else
                 {
-                    findDeviceRecord.AllInTimes[datas[i].date.Hour] += datas[i].Value;
+                    findDeviceRecord.AllInTimes[datas[i].date.Hour] += 1;
                 }
             }
 
