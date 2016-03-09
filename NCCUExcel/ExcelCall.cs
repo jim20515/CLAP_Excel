@@ -13,7 +13,7 @@ namespace NCCUExcel
 {
     public class ExcelCall
     {
-        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\thesis\\1226\\";
+        public static string _TopFolder = "C:\\Users\\jim\\Desktop\\";
 
         public static string _FileFolder = _TopFolder;
 
